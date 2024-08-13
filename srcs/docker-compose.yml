@@ -1,0 +1,45 @@
+version: '3.9'
+
+services:
+  nginx:
+    container_name: NGINX
+    build:
+      dockerfile: ./requirements/nginx/Dockerfile
+      context: .
+    ports:
+      # - '443:443'
+       - '8080:80'
+    depends_on:
+      - php
+
+  php:
+    container_name: WordPress
+    build:
+      dockerfile: ./requirements/wordpress/Dockerfile
+      context: .
+    volumes:
+      - type: bind
+        source: ./requirements/wordpress/index.php
+        target: /var/www/html
+
+  db:
+    container_name: DB
+    build:
+      dockerfile: ./requirements/mariadb/Dockerfile
+      context: .
+    volumes:
+      - type: volume
+        source: WordPress-database-volume
+        target: /var/lib/mysql
+      # - type: bind
+      #   source: ./requirements/mariadb/init.sql
+      #   target: /docker-entrypoint-initdb.d
+      # - type: bind
+      #   source: ./requirements/mariadb/
+    environment:
+      - MYSQL_USER=user01
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=wordpress
+
+volumes:
+   WordPress-database-volume:
