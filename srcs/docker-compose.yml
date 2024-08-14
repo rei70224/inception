@@ -31,6 +31,8 @@ services:
       - type: bind
         source: ./requirements/wordpress/php-fpm.conf
         target: /etc/php/7.4/fpm/php-fpm.conf
+    env_file:
+      - ./.env
     expose:
       - 9000
     depends_on:
@@ -50,10 +52,12 @@ services:
       #   target: /docker-entrypoint-initdb.d
       # - type: bind
       #   source: ./requirements/mariadb/
+    env_file:
+      - ./.env
     environment:
-      - MYSQL_USER=user01
-      - MYSQL_PASSWORD=password
-      - MYSQL_DATABASE=wordpress
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
 volumes:
    WordPress-database-volume:

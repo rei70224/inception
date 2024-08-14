@@ -16,9 +16,9 @@ sleep 15
 # 	echo 'FLUSH PRIVILEGES ;' | "${mysql[@]}"
 # fi
 
-mysql -u root -e "create database if not exists wordpress;"
-mysql -u root -e "create user 'user01'@'%' identified by 'password';"
-mysql -u root -e "grant all on wordpress.* to 'user01'@'%';"
+mysql -u root -e "create database if not exists $MYSQL_DATABASE;"
+mysql -u root -e "create user '$MYSQL_USER'@'%' identified by '$MYSQL_PASSWORD';"
+mysql -u root -e "grant all on $MYSQL_DATABASE.* to '$MYSQL_USER'@'%';"
 # mysql -u root wordpress < file.sql
 
 service mysql stop
