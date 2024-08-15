@@ -1,6 +1,7 @@
 #! /bin/bash
 
-service mysql start
+# service mysql start
+service mariadb start
 
 sleep 15
 
@@ -21,6 +22,7 @@ mysql -u root -e "create user '$MYSQL_USER'@'%' identified by '$MYSQL_PASSWORD';
 mysql -u root -e "grant all on $MYSQL_DATABASE.* to '$MYSQL_USER'@'%';"
 # mysql -u root wordpress < file.sql
 
-service mysql stop
+# service mysql stop
+service mariadb stop
 
 exec "$@"
