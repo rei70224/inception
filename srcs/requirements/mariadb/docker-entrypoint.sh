@@ -3,7 +3,7 @@
 # service mysql start
 service mariadb start
 
-sleep 15
+# sleep 15
 
 # if [ "$MYSQL_USER" -a "$MYSQL_PASSWORD" ]; then
 #     echo "hoge"
