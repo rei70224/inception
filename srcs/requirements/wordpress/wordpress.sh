@@ -13,6 +13,6 @@ wp core install --allow-root \
                 --admin_user='test_user' \
                 --admin_password='password' \
                 --admin_email='croodofkoga@gmail.com' \
-                --url=http://localhost
+                --url=http://resaito.42.fr
 
 exec "$@"
