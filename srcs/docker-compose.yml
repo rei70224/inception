@@ -11,8 +11,8 @@ services:
         source: ./requirements/wordpress/wordpress
         target: /var/www/wordpress
     ports:
-      # - '443:443'
-       - '80:80'
+      - '80:80'
+      - '443:443'
     depends_on:
       - php
 
