@@ -15,4 +15,9 @@ wp core install --allow-root \
                 --admin_email='croodofkoga@gmail.com' \
                 --url=http://resaito.42.fr
 
+wp user create --allow-root \
+                resaito \
+                resaito@student.42tokyo.jp \
+                --user_pass="password"
+
 exec "$@"
