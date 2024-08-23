@@ -7,9 +7,11 @@ services:
       dockerfile: ./requirements/nginx/Dockerfile
       context: .
     volumes:
-      - type: bind
-        source: ./requirements/wordpress/wordpress
-        target: /var/www/wordpress
+      - wordpress:/var/www/wordpress
+      # - type: bind
+        # source: ./requirements/wordpress/wordpress
+        # source: wordpress
+        # target: /var/www/wordpress
     ports:
       - '80:80'
       - '443:443'
@@ -22,9 +24,11 @@ services:
       dockerfile: ./requirements/wordpress/Dockerfile
       context: .
     volumes:
-      - type: bind
-        source: ./requirements/wordpress/wordpress
-        target: /var/www/wordpress
+      - wordpress:/var/www/wordpress
+      # - type: bind
+      #   # source: ./requirements/wordpress/wordpress
+      #   source: wordpress
+      #   target: /var/www/wordpress
     env_file:
       - ./.env
     expose:
@@ -39,7 +43,7 @@ services:
       context: .
     volumes:
       - type: volume
-        source: WordPress-database-volume
+        source: mariadb
         target: /var/lib/mysql
       # - type: bind
       #   source: ./requirements/mariadb/init.sql
@@ -54,4 +58,5 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
 volumes:
-   WordPress-database-volume:
+   mariadb:
+   wordpress:
