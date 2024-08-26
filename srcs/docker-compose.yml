@@ -16,6 +16,7 @@ services:
       - '443:443'
     depends_on:
       - php
+    restart: always
 
   php:
     container_name: WordPress
@@ -35,6 +36,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    restart: always
 
   db:
     container_name: DB
@@ -57,10 +59,11 @@ services:
       retries: 3
     env_file:
       - ./.env
-    environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    # environment:
+    #   MYSQL_DATABASE: ${MYSQL_DATABASE}
+    #   MYSQL_USER: ${MYSQL_USER}
+    #   MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    restart: always
 
 volumes:
    mariadb:
