@@ -2,10 +2,11 @@
 
 services:
   nginx:
-    container_name: NGINX
+    container_name: nginx
     build:
       dockerfile: ./requirements/nginx/Dockerfile
       context: .
+    image: nginx
     volumes:
       - wordpress:/var/www/wordpress
       # - type: bind
@@ -21,10 +22,11 @@ services:
       - inception
 
   php:
-    container_name: WordPress
+    container_name: wordpress
     build:
       dockerfile: ./requirements/wordpress/Dockerfile
       context: .
+    image: wordpress
     volumes:
       - wordpress:/var/www/wordpress
       # - type: bind
@@ -43,10 +45,11 @@ services:
       - inception
 
   db:
-    container_name: DB
+    container_name: mariadb
     build:
       dockerfile: ./requirements/mariadb/Dockerfile
       context: .
+    image: mariadb
     volumes:
       - type: volume
         source: mariadb
