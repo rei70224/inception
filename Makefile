@@ -1,4 +1,4 @@
-.PHONY: all up down clean fclean re
+.PHONY: all up down log clean fclean re
 
 all: up
 
@@ -7,6 +7,9 @@ up:
 
 down:
 	docker-compose -f srcs/docker-compose.yml down
+
+log:
+	docker-compose -f srcs/docker-compose.yml logs
 
 clean:
 	docker-compose down -f srcs/docker-compose.yml -v --rmi all --remove-orphans
