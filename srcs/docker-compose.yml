@@ -13,7 +13,6 @@ services:
         # source: wordpress
         # target: /var/www/wordpress
     ports:
-      - '80:80'
       - '443:443'
     depends_on:
       - php
@@ -34,7 +33,8 @@ services:
     expose:
       - 9000
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     container_name: DB
@@ -50,6 +50,11 @@ services:
       #   target: /docker-entrypoint-initdb.d
       # - type: bind
       #   source: ./requirements/mariadb/
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 3
     env_file:
       - ./.env
     environment:
@@ -59,4 +64,17 @@ services:
 
 volumes:
    mariadb:
+    name: mariadb
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/saitoureina/data/mariadb
+
    wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/saitoureina/data/wordpress
