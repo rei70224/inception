@@ -17,6 +17,8 @@ services:
     depends_on:
       - php
     restart: always
+    networks:
+      - inception
 
   php:
     container_name: WordPress
@@ -37,6 +39,8 @@ services:
       db:
         condition: service_healthy
     restart: always
+    networks:
+      - inception
 
   db:
     container_name: DB
@@ -64,6 +68,8 @@ services:
     #   MYSQL_USER: ${MYSQL_USER}
     #   MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     restart: always
+    networks:
+      - inception
 
 volumes:
    mariadb:
@@ -81,3 +87,9 @@ volumes:
       type: none
       o: bind
       device: /Users/saitoureina/data/wordpress
+
+networks:
+  default:
+    driver: bridge
+  inception:
+    name: inception
