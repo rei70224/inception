@@ -1,7 +1,6 @@
 #! /bin/bash
 
 cd /var/www/wordpress
-# rm -rf /var/www/wordpress/wp-config.php && cd /var/www/wordpress
 if [ ! -f wp-config.php ]; then
     wp core download --allow-root --locale=ja --path=/var/www/wordpress
     wp core config --allow-root \
