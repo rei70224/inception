@@ -61,8 +61,8 @@ services:
       #   source: ./requirements/mariadb/
     healthcheck:
       test: ['CMD', 'mysqladmin', 'ping']
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 10s
       retries: 3
     env_file:
       - ./.env
@@ -81,7 +81,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /Users/saitoureina/data/mariadb
+      device: /home/resaito/data/mariadb
 
    wordpress:
     name: wordpress
@@ -89,7 +89,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /Users/saitoureina/data/wordpress
+      device: /home/resaito/data/wordpress
 
 networks:
   default:
