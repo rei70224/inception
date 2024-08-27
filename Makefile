@@ -3,16 +3,16 @@
 all: up
 
 up:
-	docker-compose -f srcs/docker-compose.yml up -d --build
+	docker compose -f srcs/docker-compose.yml up -d --build
 
 down:
-	docker-compose -f srcs/docker-compose.yml down
+	docker compose -f srcs/docker-compose.yml down
 
 log:
-	docker-compose -f srcs/docker-compose.yml logs
+	docker compose -f srcs/docker-compose.yml logs
 
 clean:
-	docker-compose down -f srcs/docker-compose.yml -v --rmi all --remove-orphans
+	docker compose down -f srcs/docker-compose.yml -v --rmi all --remove-orphans
 
 fclean: clean
 
